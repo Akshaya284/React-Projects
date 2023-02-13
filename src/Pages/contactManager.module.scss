@@ -1,0 +1,87 @@
+.mainPart {
+    margin-top: 100px;
+    margin-left: 70px;
+
+}
+.contactHeader {
+    display: flex;
+    justify-content: start;
+      div {
+        margin-right: 10px;
+
+        img {
+            align-items: center;
+            height: 40px;
+            width: 40px;
+            margin-top: 11px;
+        }
+        h3 {
+            margin-bottom: 0px;
+        }
+      }
+      .sortBy {
+        margin-left: 40px;
+      }
+}
+.searchContacts {
+    margin-top: 35px;
+    margin-left: 50px;
+    display: flex;
+      
+    .searchInput {
+        margin-right: 20px;
+        input {
+            border-radius: 25px;
+            border-color: transparent;
+            background: #ece7e7;
+            width: 350px;
+            padding: 5px;
+        }
+        button{
+            border: none !important;
+            background:transparent;
+            position: relative;
+            right: 30px;
+        }
+
+    }
+    button {
+    background-image: linear-gradient(to right,rgb(237, 125, 77) , rgb(200, 95, 181));
+    padding: 6px 8px;
+    border-radius: 10px;
+    color: white;
+    font-weight: bold;
+    }
+    
+}
+.contactHeaderTwo {
+    width: 550px;
+    margin-left: 20px;
+    background: #ece7e7;
+    padding: 12px;
+
+    .multiSelect {
+        font-weight: bold;
+        width: 25px;
+        height: 25px;
+        text-align: center;
+    }
+    
+
+    .multiSelect:hover {
+        background-color: #cdcaca ;
+        cursor: pointer;
+    }
+}
+.contactInfo {
+    width: 550px;
+    margin-left: 20px;
+    background:none;
+    padding: 12px;
+}
+.contactCard {
+    width: 500px;
+    height: 500px;
+    background: #d14b4b;
+}
+

@@ -1,9 +1,11 @@
 .header {
-    width: 96%;
+    width: 95.5%;
+    position: fixed;
+    left: 3.5%;
 }
 .headerSearch {
-    height: 50px;
-    width: 50px;
+    height: 35px;
+    width: 35px;
     border-radius: 50%;
     background-color: rgb(212, 207, 207);
     display: flex;
