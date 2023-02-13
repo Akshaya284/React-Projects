@@ -1,0 +1,24 @@
+.header {
+    width: 96%;
+}
+.headerSearch {
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    background-color: rgb(212, 207, 207);
+    display: flex;
+    justify-content: center;
+    .searchIcon {
+        position: absolute;
+        top: 50%;
+        transform: translate(0, -50%);
+    }
+}
+.headerOptions{
+        display: flex;
+     div {
+        margin-right: 30px;
+        font-size: larger;
+        font-weight: bolder;
+     }
+}
