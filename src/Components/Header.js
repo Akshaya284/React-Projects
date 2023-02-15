@@ -6,8 +6,8 @@ import styles from './header.module.scss'
 function Header() {
     return (
         <div className={styles.header}>
-            <nav class="navbar border border-bottom shadow-sm p-2">
-                <div class="container-fluid">
+            <nav className="navbar border border-bottom shadow-sm p-2">
+                <div className="container-fluid">
                     <div className={styles.headerSearch}>
                         <AiOutlineSearch size={28} className={styles.searchIcon} />
                     </div>

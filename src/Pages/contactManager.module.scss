@@ -1,6 +1,6 @@
 .mainPart {
     margin-top: 100px;
-    margin-left: 70px;
+    margin-left: 100px;
 
 }
 .contactHeader {
@@ -72,16 +72,73 @@
         background-color: #cdcaca ;
         cursor: pointer;
     }
+   
+}
+.deleteAll {
+    width: 550px;
+    margin-left: 20px;
+    padding: 5px;
+    text-align: right;
+    display: flex;
+    justify-content: space-around;
+    margin-top: 8px;
+    border: 2px solid;
+    border-color: rgb(201, 37, 168);
+
+
+    button {
+        background: none;
+        color: red;
+        border: none;
+        font-weight: 500;
+    }
+    span {
+        color: green;
+        font-weight: 500;
+    }
+    .cancelBtn {
+        background: none;
+        color: rgb(232, 101, 61);
+
+        border: none;
+        font-weight: 500;
+    }
+}
+.deleteAllMsg {
+    margin-left: 20px;
+    height: 200px;
+    width: 550px;
+    margin-top: 30px;
+
+    span {
+        text-align: center !important;
+        display: flex;
+        justify-content: center;
+        position: relative;
+        color: #2e1add;
+        font-size: larger;
+        font-weight: bolder;
+        // top: 100px;
+    }
+    
 }
 .contactInfo {
     width: 550px;
     margin-left: 20px;
     background:none;
     padding: 12px;
+
+    input {
+        width: 15px;
+        height: 15px;
+    }
 }
 .contactCard {
     width: 500px;
     height: 500px;
-    background: #d14b4b;
+    // background: #b3d5b8;
+    background: #ece7e7;
+
 }
+
 
