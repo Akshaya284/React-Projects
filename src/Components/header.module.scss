@@ -1,6 +1,6 @@
 .header {
     width: 96.5%;
-    position: fixed;
+    position: absolute;
     left: 3.5%;
 }
 .headerSearch {
@@ -23,4 +23,13 @@
         font-size: larger;
         font-weight: bolder;
      }
+}
+
+@media only screen and (max-width : 500px) {
+  .header {
+    width: 100%;
+    left: 0;
+    position: fixed;
+    background-color: rgb(51, 153, 153);
+  }
 }
