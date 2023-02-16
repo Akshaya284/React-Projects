@@ -30,8 +30,7 @@ function ContactManger() {
   const [search, setSearch] = useState("");
   const [multiSelect, setMultiSelect] = useState(false);
   const [contactData, setContactData] = useState(null);
-  const [sortOrder, setSortOrder] = useState('asc')
-  
+  const [sortOrder, setSortOrder] = useState("asc");
 
   const defaultOptions = {
     loop: true,
@@ -172,17 +171,16 @@ function ContactManger() {
   };
 
   const sortContacts = (users, sortOrder) => {
-    if (sortOrder === 'asc') {
+    if (sortOrder === "asc") {
       return users.sort((a, b) => a.firstname.localeCompare(b.firstname));
-    } else if (sortOrder === 'desc') {
+    } else if (sortOrder === "desc") {
       return users.sort((a, b) => b.firstname.localeCompare(a.firstname));
     }
     return users;
-  }
+  };
 
   const sortedContacts = sortContacts(users, sortOrder);
-  console.log(sortedContacts,"sortedContacts");
-
+  console.log(sortedContacts, "sortedContacts");
 
   return (
     <div className={styles.mainPart}>
@@ -196,9 +194,13 @@ function ContactManger() {
         </div>
         <div className={styles.sortBy}>
           <span>Sort by: </span>
-          <select className="border border-0 fw-bold" value={sortOrder} onChange={(e) => setSortOrder(e.target.value)}>
-            <option value = 'asc'>Name (A-Z)</option>
-            <option value = 'desc'>Name (Z-A)</option>
+          <select
+            className="border border-0 fw-bold"
+            value={sortOrder}
+            onChange={(e) => setSortOrder(e.target.value)}
+          >
+            <option value="asc">Name (A-Z)</option>
+            <option value="desc">Name (Z-A)</option>
           </select>
         </div>
       </div>
@@ -398,7 +400,14 @@ function ContactManger() {
 
             {filteredUsers.map((user, index) => (
               <div key={index} onClick={() => setContactData(index)}>
-                <div className={contactData === index ? styles.activeDiv : styles.contactInfo} key={index}>
+                <div
+                  className={
+                    contactData === index
+                      ? styles.activeDiv
+                      : styles.contactInfo
+                  }
+                  key={index}
+                >
                   <div className="row">
                     <div className="col-2">
                       <input

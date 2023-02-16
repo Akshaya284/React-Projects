@@ -1,12 +1,12 @@
 .sidebar {
-    min-height: 100vh;
-    width: 3.5% !important;
-    background-image: linear-gradient(rgb(237, 125, 77), rgb(200, 95, 181));
-    float: left !important;
-    position: fixed;
+  min-height: 100vh;
+  width: 3.5% !important;
+  background-image: linear-gradient(rgb(237, 125, 77), rgb(200, 95, 181));
+  float: left !important;
+  position: fixed;
 }
-@media only screen and ( max-width: 500px ){
-    .sidebar {
-        display: none;
-    }
+@media only screen and (max-width: 500px) {
+  .sidebar {
+    display: none;
+  }
 }

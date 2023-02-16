@@ -1,14 +1,14 @@
-import Header from './Components/Header';
-import Sidebar from './Components/Sidebar';
-import ContactManger from './Pages/ContactManager';
+import Header from "./Components/Header";
+import Sidebar from "./Components/Sidebar";
+import ContactManger from "./Pages/ContactManager";
 
 function App(props) {
   return (
     <div>
       <div className="d-flex">
-      <Sidebar/>
-        <ContactManger/>
-      <Header/>
+        <Sidebar />
+        <ContactManger />
+        <Header />
       </div>
     </div>
   );

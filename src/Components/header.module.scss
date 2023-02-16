@@ -1,26 +1,34 @@
 .header {
-    width: 96.5%;
-    position: fixed;
-    left: 3.5%;
+  width: 96.5%;
+  position: fixed;
+  left: 3.5%;
 }
 .headerSearch {
-    height: 35px;
-    width: 35px;
-    border-radius: 50%;
-    background-color: rgb(212, 207, 207);
-    display: flex;
-    justify-content: center;
-    .searchIcon {
-        position: absolute;
-        top: 50%;
-        transform: translate(0, -50%);
-    }
+  height: 35px;
+  width: 35px;
+  border-radius: 50%;
+  background-color: rgb(212, 207, 207);
+  display: flex;
+  justify-content: center;
+  .searchIcon {
+    position: absolute;
+    top: 50%;
+    transform: translate(0, -50%);
+  }
 }
-.headerOptions{
-        display: flex;
-     div {
-        margin-right: 30px;
-        font-size: larger;
-        font-weight: bolder;
-     }
+.headerOptions {
+  display: flex;
+  div {
+    margin-right: 30px;
+    font-size: larger;
+    font-weight: bolder;
+  }
+}
+@media only screen and (max-width: 500px) {
+  .header {
+    width: 100%;
+    left: 0;
+    position: fixed;
+    background-color: rgb(51, 153, 153);
+  }
 }
