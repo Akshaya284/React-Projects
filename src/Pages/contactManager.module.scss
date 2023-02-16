@@ -59,6 +59,7 @@
     margin-left: 20px;
     background: #ece7e7;
     padding: 12px;
+    margin-bottom: 12px;
 
     .multiSelect {
         font-weight: bold;
@@ -133,12 +134,62 @@
         height: 15px;
     }
 }
+.activeDiv {
+    width: 550px;
+    margin-left: 20px;
+    background:#eeeaea;
+    padding: 12px;
+}
 .contactCard {
-    width: 500px;
-    height: 500px;
-    // background: #b3d5b8;
-    background: #ece7e7;
+    width: 450px;
+    height: 450px;
+    background: #eeeaea;
+    margin-left: 100px;
+    display: flex;
+    justify-content: center;
+    padding: 15px;
 
+    .customContactCard {
+    background: #eeeaea !important;
+    margin-left: 10%;
+    margin-right: 10%;
+
+    .customAvatar {
+        margin-left: 35%;
+        margin-right: 30%;
+        // background: none !important;
+    }
+
+    }
+    .customContactCard ul li {
+    background: #eeeaea !important;
+    margin-top: 5px;
+    }
+    .customContactCard ul span {
+        font-weight: 500 ;
+        }
+
+}
+
+@media only screen and (max-width : 500px) {
+    .contactCard {
+        // margin-right: 50%;
+        margin-left: 10%;
+    }
+}
+@media only screen and (max-width : 1439px) {
+    .contactInfo {
+        // margin-right: 50%;
+        margin-left: 0;
+        width: 500px;
+    }
+    .contactCard {
+       margin-left: 40px;
+       margin-right: 50px !important;
+    }
+    .contactHeaderTwo {
+        margin-left: 0;
+    }
 }
 
 

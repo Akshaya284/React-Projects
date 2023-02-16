@@ -7,10 +7,8 @@ import { validName, validEmail, validPhone } from "../Regex";
 import successTick from "../Assets/Images/successTick.png";
 import Lottie from "react-lottie";
 import animationData from "../Assets/Lottie/no data.json.json";
-import Avatar from 'react-avatar';
-import randomcolor from 'randomcolor';
-
-
+import Avatar from "react-avatar";
+import randomcolor from "randomcolor";
 
 function ContactManger() {
   const [open, setOpen] = useState(false);
@@ -23,6 +21,7 @@ function ContactManger() {
     lastname: "",
     email: "",
     phone: "",
+    designation: "",
     company: "",
     address: "",
     isChecked: false,
@@ -30,8 +29,9 @@ function ContactManger() {
   const [errors, setErrors] = useState({});
   const [search, setSearch] = useState("");
   const [multiSelect, setMultiSelect] = useState(false);
-  const [select, setSelect] = useState(false);
-  const [selectUsers, setSelectUser] = useState([]);
+  const [contactData, setContactData] = useState(null);
+  const [sortOrder, setSortOrder] = useState('asc')
+  
 
   const defaultOptions = {
     loop: true,
@@ -42,20 +42,9 @@ function ContactManger() {
     },
   };
 
-  // const fn = users.map((item)=>{
-  //   console.log(item.firstname.length,"item");
-  //   return item.firstname
-  // });
-  // const ln = users.map((item)=>{
-  //   return item.lastname
-  // });
-
-  // console.log(fn.length,ln,'avatar');
-
-  // const initials = fn.substring(0, 1) + ln.substring(0, 1);
-
   const backgroundColor = randomcolor();
 
+  const selectedContactData = contactData !== null ? users[contactData] : null;
 
   // load data from Local Storage when the component mounts
 
@@ -106,6 +95,9 @@ function ContactManger() {
     if (!userDetails.company) {
       errors.company = "Company name is required";
     }
+    if (!userDetails.designation) {
+      errors.designation = "Designation name is required";
+    }
 
     setErrors(errors);
 
@@ -121,6 +113,7 @@ function ContactManger() {
           email: "",
           phone: "",
           company: "",
+          designation: "",
           address: "",
         });
       }, 1000);
@@ -178,6 +171,19 @@ function ContactManger() {
     setUsers(newUserDetails);
   };
 
+  const sortContacts = (users, sortOrder) => {
+    if (sortOrder === 'asc') {
+      return users.sort((a, b) => a.firstname.localeCompare(b.firstname));
+    } else if (sortOrder === 'desc') {
+      return users.sort((a, b) => b.firstname.localeCompare(a.firstname));
+    }
+    return users;
+  }
+
+  const sortedContacts = sortContacts(users, sortOrder);
+  console.log(sortedContacts,"sortedContacts");
+
+
   return (
     <div className={styles.mainPart}>
       <div className={styles.contactHeader}>
@@ -190,10 +196,9 @@ function ContactManger() {
         </div>
         <div className={styles.sortBy}>
           <span>Sort by: </span>
-          <select className="border border-0 fw-bold">
-            <option>Date Created</option>
-            <option>Ascending</option>
-            <option>Descending</option>
+          <select className="border border-0 fw-bold" value={sortOrder} onChange={(e) => setSortOrder(e.target.value)}>
+            <option value = 'asc'>Name (A-Z)</option>
+            <option value = 'desc'>Name (Z-A)</option>
           </select>
         </div>
       </div>
@@ -206,7 +211,7 @@ function ContactManger() {
             onChange={(e) => handleSearch(e)}
           />
           <button>
-            <AiOutlineSearch />
+            <AiOutlineSearch color="black" />
           </button>
         </div>
         <div>
@@ -307,6 +312,24 @@ function ContactManger() {
               )}
               <div className="input-group mb-3">
                 <span className="input-group-text">
+                  Designation <span className="text-danger">*</span>
+                </span>
+                <input
+                  type="text"
+                  className="form-control"
+                  placeholder="Enter your designation"
+                  value={userDetails.designation}
+                  name="designation"
+                  onChange={(e) => {
+                    handleChange(e);
+                  }}
+                />
+              </div>
+              {errors.designation && (
+                <p className="text-danger">{errors.designation}</p>
+              )}
+              <div className="input-group mb-3">
+                <span className="input-group-text">
                   Address<span className="text-muted">(optional)</span>
                 </span>
                 <input
@@ -326,7 +349,7 @@ function ContactManger() {
       </div>
       <div className="container my-4 mx-4">
         <div className="row">
-          <div className="col-7">
+          <div className="col col-lg-7 col-sm-12">
             <div className={styles.contactHeaderTwo}>
               <div className="row">
                 {multiSelect ? (
@@ -354,7 +377,6 @@ function ContactManger() {
             <div>
               {multiSelect && (
                 <div className={styles.deleteAll}>
-                  {/* <span> selected Items </span> */}
                   <button onClick={handleDelete}>Delete</button>
                   <button
                     className={styles.cancelBtn}
@@ -375,8 +397,8 @@ function ContactManger() {
             {/* Contact Info  */}
 
             {filteredUsers.map((user, index) => (
-              <div key={index}>
-                <div className={styles.contactInfo} key={index}>
+              <div key={index} onClick={() => setContactData(index)}>
+                <div className={contactData === index ? styles.activeDiv : styles.contactInfo} key={index}>
                   <div className="row">
                     <div className="col-2">
                       <input
@@ -387,15 +409,23 @@ function ContactManger() {
                     </div>
                     <div className="col-6 d-flex">
                       <div>
-                      <span>
-                      <Avatar name={`${user.firstname.substring(0,1)} ${user.lastname.substring(0,1)}`} size="45" round={true} style={{ backgroundColor: backgroundColor }} />
-                      </span>
+                        <span>
+                          <Avatar
+                            name={`${user.firstname.substring(
+                              0,
+                              1
+                            )} ${user.lastname.substring(0, 1)}`}
+                            size="45"
+                            round={true}
+                            style={{ backgroundColor: backgroundColor }}
+                          />
+                        </span>
                       </div>
                       <div className="ms-3">
-                      <span className="fw-bold">
-                        {user.firstname} {user.lastname}
-                      </span>
-                      <p>{user.email}</p>
+                        <span className="fw-bold">
+                          {user.firstname} {user.lastname}
+                        </span>
+                        <p>{user.email}</p>
                       </div>
                     </div>
                     <div className="col-4">
@@ -403,19 +433,113 @@ function ContactManger() {
                     </div>
                   </div>
                 </div>
-                {/* <button onClick={() => handleDelete(index)}>Delete</button> */}
               </div>
             ))}
           </div>
-          <div className="col-5">
+          <div className="col col-lg-4 col-sm-12">
             <div className={styles.contactCard}>
-                {/* <div>
-                  <p>{filteredUsers[0].firstname}</p>
-                  <p>{filteredUsers[0].lastname}</p>
-                  <p>{filteredUsers[0].email}</p>
-                  <p>{filteredUsers[0].company}</p>
-                  <p>{filteredUsers[0].address}</p>
-                </div>                 */}
+              {selectedContactData ? (
+                <div
+                  className={styles.customContactCard}
+                  style={{ backgroundColor: backgroundColor }}
+                >
+                  <div>
+                    <Avatar
+                      name={`${selectedContactData.firstname.substring(
+                        0,
+                        1
+                      )} ${selectedContactData.lastname.substring(0, 1)}`}
+                      size="65"
+                      round={true}
+                      className={styles.customAvatar}
+                    />
+                    <h5 class="card-title text-center mt-3 text-bold">
+                      {selectedContactData.firstname}{" "}
+                      {selectedContactData.lastname}
+                    </h5>
+                    <p class="card-text text-center">
+                      {selectedContactData.designation} @{" "}
+                      {selectedContactData.company}
+                    </p>
+                  </div>
+                  <div className="d-flex justify-content-between">
+                    <ul class="list-group list-group-flush mt-5">
+                      <li class="list-group-item">Name: </li>
+                      <li class="list-group-item">Email: </li>
+                      <li class="list-group-item">Phone: </li>
+                      <li class="list-group-item">Company: </li>
+                      <li class="list-group-item">Address: </li>
+                    </ul>
+                    <ul class="list-group list-group-flush mt-5">
+                      <li class="list-group-item">
+                        <span className="fw-1">
+                          {selectedContactData.firstname} {users[0].lastname}
+                        </span>
+                      </li>
+                      <li class="list-group-item">
+                        <span className="">{selectedContactData.email} </span>
+                      </li>
+                      <li class="list-group-item">
+                        <span className="">{selectedContactData.phone} </span>
+                      </li>
+                      <li class="list-group-item">
+                        <span className="">{selectedContactData.company}</span>
+                      </li>
+                      <li class="list-group-item">
+                        <span className="">{selectedContactData.address}</span>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              ) : (
+                <div className={styles.customContactCard}>
+                  <div>
+                    <Avatar
+                      name={`${users[0].firstname.substring(
+                        0,
+                        1
+                      )} ${users[0].lastname.substring(0, 1)}`}
+                      size="65"
+                      round={true}
+                      className={styles.customAvatar}
+                    />
+                    <h5 class="card-title text-center mt-3 text-bold">
+                      {users[0].firstname} {users[0].lastname}
+                    </h5>
+                    <p class="card-text text-center">
+                      {users[0].designation} @ {users[0].company}
+                    </p>
+                  </div>
+                  <div className="d-flex justify-content-between">
+                    <ul class="list-group list-group-flush mt-5">
+                      <li class="list-group-item">Name: </li>
+                      <li class="list-group-item">Email: </li>
+                      <li class="list-group-item">Phone: </li>
+                      <li class="list-group-item">Company: </li>
+                      <li class="list-group-item">Address: </li>
+                    </ul>
+                    <ul class="list-group list-group-flush mt-5">
+                      <li class="list-group-item">
+                        <span className="fw-1">
+                          {users[0].firstname} {users[0].lastname}
+                        </span>
+                      </li>
+                      <li class="list-group-item">
+                        <span className="">{users[0].email} </span>
+                      </li>
+                      <li class="list-group-item">
+                        <span className="">{users[0].phone} </span>
+                      </li>
+                      <li class="list-group-item">
+                        <span className="">{users[0].company}</span>
+                      </li>
+                      <li class="list-group-item">
+                        <span className="">{users[0].address}</span>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              )}
             </div>
           </div>
         </div>
