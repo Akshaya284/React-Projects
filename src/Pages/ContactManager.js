@@ -31,7 +31,7 @@ function ContactManger() {
   const [multiSelect, setMultiSelect] = useState(false);
   const [contactData, setContactData] = useState(null);
   const [sortOrder, setSortOrder] = useState('asc')
-  
+
 
   const defaultOptions = {
     loop: true,
@@ -167,8 +167,17 @@ function ContactManger() {
   };
 
   const handleDelete = () => {
-    const newUserDetails = users.filter((user) => !user.isChecked);
-    setUsers(newUserDetails);
+    users.map((user) => {
+      if (!user.isChecked) {
+        alert('Please select contacts to delete')
+      }
+      else {
+        const newUserDetails = users.filter((user) => !user.isChecked);
+        console.log(newUserDetails, "newUserDetails");
+        setUsers(newUserDetails);
+      }
+      return
+    })
   };
 
   const sortContacts = (users, sortOrder) => {
@@ -181,7 +190,7 @@ function ContactManger() {
   }
 
   const sortedContacts = sortContacts(users, sortOrder);
-  console.log(sortedContacts,"sortedContacts");
+  console.log(sortedContacts, "sortedContacts");
 
 
   return (
@@ -197,8 +206,8 @@ function ContactManger() {
         <div className={styles.sortBy}>
           <span>Sort by: </span>
           <select className="border border-0 fw-bold" value={sortOrder} onChange={(e) => setSortOrder(e.target.value)}>
-            <option value = 'asc'>Name (A-Z)</option>
-            <option value = 'desc'>Name (Z-A)</option>
+            <option value='asc'>Name (A-Z)</option>
+            <option value='desc'>Name (Z-A)</option>
           </select>
         </div>
       </div>
@@ -352,30 +361,30 @@ function ContactManger() {
           <div className="col col-lg-7 col-sm-12">
             <div className={styles.contactHeaderTwo}>
               <div className="row">
-                {multiSelect ? (
+                {!multiSelect ? (
                   <div className="col-2">
                     <h6
                       className={styles.multiSelect}
-                      onClick={handleUnCheckAll}
+                      onClick={handleCheckAll}
                     >
-                      -
+                      +
                     </h6>
                   </div>
                 ) : (
-                  <div className="col-2" onClick={handleCheckAll}>
-                    <h6 className={styles.multiSelect}>+</h6>
+                  <div className="col-2" onClick={handleUnCheckAll}>
+                    <h6 className={styles.multiSelect}>-</h6>
                   </div>
                 )}
                 <div className="col-6">
                   <span>Basic Info</span>
                 </div>
                 <div className="col-4">
-                  <span>Company</span>
+                  <span className="ms-3">Company</span>
                 </div>
               </div>
             </div>
             <div>
-              {multiSelect && (
+              {users.length !== 0 && multiSelect && (
                 <div className={styles.deleteAll}>
                   <button onClick={handleDelete}>Delete</button>
                   <button
@@ -429,7 +438,7 @@ function ContactManger() {
                       </div>
                     </div>
                     <div className="col-4">
-                      <span>{user.company}</span>
+                      <span className="ms-5">{user.company}</span>
                     </div>
                   </div>
                 </div>
@@ -438,108 +447,110 @@ function ContactManger() {
           </div>
           <div className="col col-lg-4 col-sm-12">
             <div className={styles.contactCard}>
-              {selectedContactData ? (
-                <div
-                  className={styles.customContactCard}
-                  style={{ backgroundColor: backgroundColor }}
-                >
-                  <div>
-                    <Avatar
-                      name={`${selectedContactData.firstname.substring(
-                        0,
-                        1
-                      )} ${selectedContactData.lastname.substring(0, 1)}`}
-                      size="65"
-                      round={true}
-                      className={styles.customAvatar}
-                    />
-                    <h5 class="card-title text-center mt-3 text-bold">
-                      {selectedContactData.firstname}{" "}
-                      {selectedContactData.lastname}
-                    </h5>
-                    <p class="card-text text-center">
-                      {selectedContactData.designation} @{" "}
-                      {selectedContactData.company}
-                    </p>
+              {users.length !== 0 && <div >
+                {selectedContactData ? (
+                  <div
+                    className={styles.customContactCard}
+                    style={{ backgroundColor: backgroundColor }}
+                  >
+                    <div>
+                      <Avatar
+                        name={`${selectedContactData.firstname.substring(
+                          0,
+                          1
+                        )} ${selectedContactData.lastname.substring(0, 1)}`}
+                        size="65"
+                        round={true}
+                        className={styles.customAvatar}
+                      />
+                      <h5 class="card-title text-center mt-3 text-bold">
+                        {selectedContactData.firstname}{" "}
+                        {selectedContactData.lastname}
+                      </h5>
+                      <p class="card-text text-center">
+                        {selectedContactData.designation} @{" "}
+                        {selectedContactData.company}
+                      </p>
+                    </div>
+                    <div className="d-flex justify-content-between">
+                      <ul class="list-group list-group-flush mt-5">
+                        <li class="list-group-item">Name: </li>
+                        <li class="list-group-item">Email: </li>
+                        <li class="list-group-item">Phone: </li>
+                        <li class="list-group-item">Company: </li>
+                        <li class="list-group-item">Address: </li>
+                      </ul>
+                      <ul class="list-group list-group-flush mt-5">
+                        <li class="list-group-item">
+                          <span className="fw-1">
+                            {selectedContactData.firstname} {users[0].lastname}
+                          </span>
+                        </li>
+                        <li class="list-group-item">
+                          <span className="">{selectedContactData.email} </span>
+                        </li>
+                        <li class="list-group-item">
+                          <span className="">{selectedContactData.phone} </span>
+                        </li>
+                        <li class="list-group-item">
+                          <span className="">{selectedContactData.company}</span>
+                        </li>
+                        <li class="list-group-item">
+                          <span className="">{selectedContactData.address}</span>
+                        </li>
+                      </ul>
+                    </div>
                   </div>
-                  <div className="d-flex justify-content-between">
-                    <ul class="list-group list-group-flush mt-5">
-                      <li class="list-group-item">Name: </li>
-                      <li class="list-group-item">Email: </li>
-                      <li class="list-group-item">Phone: </li>
-                      <li class="list-group-item">Company: </li>
-                      <li class="list-group-item">Address: </li>
-                    </ul>
-                    <ul class="list-group list-group-flush mt-5">
-                      <li class="list-group-item">
-                        <span className="fw-1">
-                          {selectedContactData.firstname} {users[0].lastname}
-                        </span>
-                      </li>
-                      <li class="list-group-item">
-                        <span className="">{selectedContactData.email} </span>
-                      </li>
-                      <li class="list-group-item">
-                        <span className="">{selectedContactData.phone} </span>
-                      </li>
-                      <li class="list-group-item">
-                        <span className="">{selectedContactData.company}</span>
-                      </li>
-                      <li class="list-group-item">
-                        <span className="">{selectedContactData.address}</span>
-                      </li>
-                    </ul>
+                ) : (
+                  <div className={styles.customContactCard}>
+                    <div>
+                      <Avatar
+                        name={`${users[0]?.firstname.substring(
+                          0,
+                          1
+                        )} ${users[0]?.lastname.substring(0, 1)}`}
+                        size="65"
+                        round={true}
+                        className={styles.customAvatar}
+                      />
+                      <h5 class="card-title text-center mt-3 text-bold">
+                        {users[0]?.firstname} {users[0]?.lastname}
+                      </h5>
+                      <p class="card-text text-center">
+                        {users[0]?.designation} @ {users[0]?.company}
+                      </p>
+                    </div>
+                    <div className="d-flex justify-content-between">
+                      <ul class="list-group list-group-flush mt-5">
+                        <li class="list-group-item">Name: </li>
+                        <li class="list-group-item">Email: </li>
+                        <li class="list-group-item">Phone: </li>
+                        <li class="list-group-item">Company: </li>
+                        <li class="list-group-item">Address: </li>
+                      </ul>
+                      <ul class="list-group list-group-flush mt-5">
+                        <li class="list-group-item">
+                          <span className="fw-1">
+                            {users[0]?.firstname} {users[0]?.lastname}
+                          </span>
+                        </li>
+                        <li class="list-group-item">
+                          <span className="">{users[0]?.email} </span>
+                        </li>
+                        <li class="list-group-item">
+                          <span className="">{users[0]?.phone} </span>
+                        </li>
+                        <li class="list-group-item">
+                          <span className="">{users[0]?.company}</span>
+                        </li>
+                        <li class="list-group-item">
+                          <span className="">{users[0]?.address}</span>
+                        </li>
+                      </ul>
+                    </div>
                   </div>
-                </div>
-              ) : (
-                <div className={styles.customContactCard}>
-                  <div>
-                    <Avatar
-                      name={`${users[0].firstname.substring(
-                        0,
-                        1
-                      )} ${users[0].lastname.substring(0, 1)}`}
-                      size="65"
-                      round={true}
-                      className={styles.customAvatar}
-                    />
-                    <h5 class="card-title text-center mt-3 text-bold">
-                      {users[0].firstname} {users[0].lastname}
-                    </h5>
-                    <p class="card-text text-center">
-                      {users[0].designation} @ {users[0].company}
-                    </p>
-                  </div>
-                  <div className="d-flex justify-content-between">
-                    <ul class="list-group list-group-flush mt-5">
-                      <li class="list-group-item">Name: </li>
-                      <li class="list-group-item">Email: </li>
-                      <li class="list-group-item">Phone: </li>
-                      <li class="list-group-item">Company: </li>
-                      <li class="list-group-item">Address: </li>
-                    </ul>
-                    <ul class="list-group list-group-flush mt-5">
-                      <li class="list-group-item">
-                        <span className="fw-1">
-                          {users[0].firstname} {users[0].lastname}
-                        </span>
-                      </li>
-                      <li class="list-group-item">
-                        <span className="">{users[0].email} </span>
-                      </li>
-                      <li class="list-group-item">
-                        <span className="">{users[0].phone} </span>
-                      </li>
-                      <li class="list-group-item">
-                        <span className="">{users[0].company}</span>
-                      </li>
-                      <li class="list-group-item">
-                        <span className="">{users[0].address}</span>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-              )}
+                )}
+              </div>}
             </div>
           </div>
         </div>
