@@ -137,9 +137,12 @@
 }
 .activeDiv {
     width: 550px;
-    margin-left: 20px;
     background:#eeeaea;
     padding: 12px;
+    input {
+        width: 15px;
+        height: 15px;
+    }
 }
 .contactCard {
     width: 450px;
