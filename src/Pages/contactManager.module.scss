@@ -3,10 +3,12 @@
     margin-left: 100px;
 
 }
+
 .contactHeader {
     display: flex;
     justify-content: start;
-      div {
+
+    div {
         margin-right: 10px;
 
         img {
@@ -15,21 +17,25 @@
             width: 40px;
             margin-top: 11px;
         }
+
         h3 {
             margin-bottom: 0px;
         }
-      }
-      .sortBy {
+    }
+
+    .sortBy {
         margin-left: 40px;
-      }
+    }
 }
+
 .searchContacts {
     margin-top: 35px;
     margin-left: 50px;
     display: flex;
-      
+
     .searchInput {
         margin-right: 20px;
+
         input {
             border-radius: 25px;
             border-color: transparent;
@@ -37,23 +43,26 @@
             width: 350px;
             padding: 5px;
         }
-        button{
+
+        button {
             border: none !important;
-            background:transparent;
+            background: transparent;
             position: relative;
             right: 30px;
         }
 
     }
+
     button {
-    background-image: linear-gradient(to right,rgb(237, 125, 77) , rgb(200, 95, 181));
-    padding: 6px 8px;
-    border-radius: 10px;
-    color: white;
-    font-weight: bold;
+        background-image: linear-gradient(to right, rgb(237, 125, 77), rgb(200, 95, 181));
+        padding: 6px 8px;
+        border-radius: 10px;
+        color: white;
+        font-weight: bold;
     }
-    
+
 }
+
 .contactHeaderTwo {
     width: 550px;
     margin-left: 20px;
@@ -67,22 +76,22 @@
         height: 25px;
         text-align: center;
     }
-    
+
 
     .multiSelect:hover {
-        background-color: #cdcaca ;
+        background-color: #cdcaca;
         cursor: pointer;
     }
-   
+
 }
+
 .deleteAll {
     width: 550px;
-    margin-left: 20px;
     padding: 5px;
     text-align: right;
     display: flex;
     justify-content: space-around;
-    margin-top: 8px;
+    margin: 10px 0px;
     border: 2px solid;
     border-color: rgb(201, 37, 168);
 
@@ -93,19 +102,22 @@
         border: none;
         font-weight: 500;
     }
+
     span {
         color: green;
         font-weight: 500;
     }
+
     .cancelBtn {
         background: none;
-        color: rgb(232, 101, 61);
+        color: rgb(6, 58, 14);
 
         border: none;
         font-weight: 500;
     }
-    
+
 }
+
 .deleteAllMsg {
     margin-left: 20px;
     height: 200px;
@@ -122,12 +134,13 @@
         font-weight: bolder;
         // top: 100px;
     }
-    
+
 }
+
 .contactInfo {
     width: 550px;
     margin-left: 20px;
-    background:none;
+    background: none;
     padding: 12px;
 
     input {
@@ -135,15 +148,18 @@
         height: 15px;
     }
 }
+
 .activeDiv {
     width: 550px;
-    background:#eeeaea;
+    background: #eeeaea;
     padding: 12px;
+
     input {
         width: 15px;
         height: 15px;
     }
 }
+
 .contactCard {
     width: 450px;
     height: 450px;
@@ -154,24 +170,26 @@
     padding: 15px;
 
     .customContactCard {
-    background: #eeeaea !important;
-    margin-left: 10%;
-    margin-right: 10%;
+        background: #eeeaea !important;
+        margin-left: 10%;
+        margin-right: 10%;
 
-    .customAvatar {
-        margin-left: 35%;
-        margin-right: 30%;
-        // background: none !important;
-    }
-
-    }
-    .customContactCard ul li {
-    background: #eeeaea !important;
-    margin-top: 5px;
-    }
-    .customContactCard ul span {
-        font-weight: 500 ;
+        .customAvatar {
+            margin-left: 35%;
+            margin-right: 30%;
+            // background: none !important;
         }
+
+    }
+
+    .customContactCard ul li {
+        background: #eeeaea !important;
+        margin-top: 5px;
+    }
+
+    .customContactCard ul span {
+        font-weight: 500;
+    }
 
 }
 
@@ -182,19 +200,20 @@
         margin-top: 8%;
     }
 }
+
 @media only screen and (max-width : 1439px) {
     .contactInfo {
         // margin-right: 50%;
         margin-left: 0;
         width: 500px;
     }
+
     .contactCard {
-       margin-left: 40px;
-       margin-right: 50px !important;
+        margin-left: 40px;
+        margin-right: 50px !important;
     }
+
     .contactHeaderTwo {
         margin-left: 0;
     }
 }
-
-
